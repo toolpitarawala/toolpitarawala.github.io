@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GST Calculator — Add or Remove GST, With CGST/SGST/IGST Split | ToolPitara</title>
+<meta name="description" content="Free GST calculator for India: add GST to a price or remove it from an inclusive MRP, and see the CGST, SGST and IGST amounts separately. Works for 5%, 12%, 18%, 28% and custom rates, privately in your browser.">
+<link rel="canonical" href="https://toolpitarawala.github.io/tools/gst-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolPitara">
+<meta property="og:title" content="GST Calculator — Add or Remove GST, With CGST/SGST/IGST Split | ToolPitara">
+<meta property="og:description" content="Add GST to a price or strip it out of an MRP, with the CGST + SGST and IGST figures shown separately. Free, no sign-up.">
+<meta property="og:url" content="https://toolpitarawala.github.io/tools/gst-calculator.html">
+<script>try{var t=localStorage.getItem('tp-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}</script>
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is GST?",
+      "acceptedAnswer": { "@type": "Answer", "text": "GST (Goods and Services Tax) is India's main indirect tax, charged when goods or services are sold. It replaced a chain of older taxes like VAT, service tax and excise. The seller collects GST from the buyer and pays it to the government, and registered businesses usually claim credit for the GST they paid on their own purchases." }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I look at CGST + SGST, or IGST?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It depends on where the buyer and seller are. For a sale within the same state, the tax splits into CGST (central share) and SGST (state share) — half each. For a sale across state lines, the full amount is charged as IGST instead. You pay one or the other, never both; the total GST is the same either way." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I remove GST from an MRP or invoice total?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Divide the inclusive amount by (1 + rate ÷ 100). Example: an MRP of ₹11,800 at 18% gives a base price of ₹11,800 ÷ 1.18 = ₹10,000, so the GST inside it is ₹1,800. Choose 'Remove GST' in this calculator and it does this for you. A common mistake is subtracting 18% of ₹11,800, which gives the wrong answer." }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the GST rates in India?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most goods and services fall in the standard slabs of 5%, 12%, 18% and 28%, with some items at 0% or exempt, and special rates for a few categories. Rates and exemptions are set by the GST Council and can change through official notifications, so for a real invoice confirm the current rate for your item's HSN or SAC code from official sources." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for my actual GST filing?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Use it for quick estimates, quotations and checking bills. It is not a substitute for your accountant or CA: real invoices can involve place-of-supply rules, exemptions, reverse charge, the composition scheme and input tax credit conditions that a simple calculator does not cover." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="logo" href="../index.html"><svg class="logo-mark" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="lm-star" d="M16 .6l1.9 4.9 4.9 1.9-4.9 1.9L16 14.2l-1.9-4.9L9.2 7.4l4.9-1.9z"/><rect class="lm-lid" x="3" y="14.5" width="26" height="4.6" rx="2.3"/><rect class="lm-box" x="5.5" y="19.1" width="21" height="10.4" rx="3"/><circle cx="16" cy="24.3" r="1.9" fill="#ffffff" opacity=".92"/></svg>Tool<span>Pitara</span></a>
+    <nav class="main-nav" aria-label="Main">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#tools">Tools</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="theme-btn" id="themeToggle" aria-pressed="false">🌙 Dark mode</button>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <div class="page-head">
+    <h1>GST Calculator</h1>
+    <p class="lede">Two jobs every shopkeeper, freelancer and buyer in India does again and again: add GST to a
+    price before billing, and pull the GST back out of an MRP to see the real base price. This page does both,
+    and breaks the tax into CGST, SGST and IGST so the numbers on your bill finally make sense.</p>
+  </div>
+
+  <div class="tool-layout">
+    <section class="panel" aria-labelledby="gst-inputs-h">
+      <h2 id="gst-inputs-h">Your amount</h2>
+      <form id="gstForm" novalidate>
+        <div class="field">
+          <span class="hint" id="modeLabel">What do you want to do?</span>
+          <div class="toggle-row" role="group" aria-labelledby="modeLabel">
+            <button type="button" id="modeAdd" aria-pressed="true">Add GST</button>
+            <button type="button" id="modeRemove" aria-pressed="false">Remove GST</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="gstAmount" id="amountLabel">Amount without GST (₹)</label>
+          <input type="number" id="gstAmount" inputmode="decimal" min="0" step="any" value="10000" aria-describedby="gstAmountErr">
+          <p class="error-text" id="gstAmountErr" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="gstRate">GST rate</label>
+          <select id="gstRate">
+            <option value="0">0% (exempt / nil-rated)</option>
+            <option value="5">5%</option>
+            <option value="12">12%</option>
+            <option value="18" selected>18%</option>
+            <option value="28">28%</option>
+            <option value="custom">Custom rate…</option>
+          </select>
+        </div>
+        <div class="field" id="customRateField" hidden>
+          <label for="customRate">Custom GST rate (%)</label>
+          <input type="number" id="customRate" inputmode="decimal" min="0" step="any" value="18" aria-describedby="customRateErr">
+          <p class="error-text" id="customRateErr" role="alert"></p>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn" id="copyBtn">Copy result</button>
+          <button type="button" class="btn secondary" id="resetBtn">Reset</button>
+        </div>
+        <p class="copy-msg" id="copyMsg" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="gst-results-h">
+      <h2 id="gst-results-h">Your result</h2>
+      <div aria-live="polite">
+        <div class="result-grid">
+          <div class="result-item big"><div class="k" id="totalLabel">Total amount (including GST)</div><div class="v" id="outTotal">—</div></div>
+          <div class="result-item"><div class="k">Base amount (without GST)</div><div class="v" id="outBase">—</div></div>
+          <div class="result-item"><div class="k">GST amount</div><div class="v" id="outGST">—</div></div>
+          <div class="result-item"><div class="k">CGST (half, same-state sale)</div><div class="v" id="outCGST">—</div></div>
+          <div class="result-item"><div class="k">SGST (half, same-state sale)</div><div class="v" id="outSGST">—</div></div>
+          <div class="result-item"><div class="k">IGST (full, inter-state sale)</div><div class="v" id="outIGST">—</div></div>
+          <div class="result-item"><div class="k">Total payable</div><div class="v" id="outGrand">—</div></div>
+        </div>
+        <p class="chart-cap">For one bill you charge <strong>either</strong> CGST + SGST (sale inside one state)
+        <strong>or</strong> IGST (sale to another state) — the GST amount is the same; only the split changes.</p>
+      </div>
+    </section>
+  </div>
+
+  <p class="note">Please note: this calculator gives quick estimates for quotations and bill-checking — it is
+  not tax advice. GST rates, exemptions and rules change through official notifications; confirm the rate for
+  your goods or services with your CA or from official GST sources before raising an invoice.</p>
+
+  <div class="prose">
+    <h2>What is GST, in simple words?</h2>
+    <p>GST — Goods and Services Tax — is the tax added when most things are sold in India. Before GST, a single
+    sale could pass through excise, VAT and service tax one after another. GST folded those into one tax with
+    one idea at its centre: the tax is charged at every stage of sale, but a registered business claims back the
+    GST it already paid on its purchases (input tax credit), so in the end the tax effectively falls on the
+    final customer.</p>
+    <p>For everyday maths, though, you only need two moves: adding the tax on top of a price, and separating it
+    out of a price that already contains it. That is all this page does — no sign-up, and your amounts stay in
+    your browser.</p>
+
+    <h2>CGST, SGST and IGST — what is the difference?</h2>
+    <ul>
+      <li><strong>CGST</strong> is the central government's share, and <strong>SGST</strong> is the state
+      government's share. On a sale <em>within one state</em>, the GST splits exactly in half between them:
+      at 18%, that is 9% CGST + 9% SGST.</li>
+      <li><strong>IGST</strong> applies when a sale crosses a state border. The whole tax is charged as IGST
+      (18% in the same example) and later settled between governments.</li>
+      <li>For the buyer and seller, the total tax is identical either way — only the labels on the invoice
+      change.</li>
+    </ul>
+
+    <h2>The two formulas</h2>
+    <p class="formula">Adding GST: &nbsp;Total = Base + (Base × Rate ÷ 100)</p>
+    <p class="formula">Removing GST: &nbsp;Base = Inclusive amount ÷ (1 + Rate ÷ 100)</p>
+    <p>The second formula is where most people slip. To find the base inside an MRP you divide — you do
+    <em>not</em> subtract the percentage from the MRP. Subtracting 18% from ₹11,800 gives ₹9,676, which is
+    wrong; dividing by 1.18 gives the correct ₹10,000.</p>
+
+    <h2>A worked example</h2>
+    <p>A freelancer bills a client <strong>₹10,000 plus GST at 18%</strong>:</p>
+    <ul>
+      <li>GST amount: <strong>₹1,800</strong></li>
+      <li>Client in the same state: CGST ₹900 + SGST ₹900</li>
+      <li>Client in another state: IGST ₹1,800</li>
+      <li>Invoice total: <strong>₹11,800</strong></li>
+    </ul>
+    <p>Now run it backwards. A phone is priced at <strong>₹11,800 MRP (GST included)</strong>. Switch this
+    calculator to “Remove GST” and the base price is ₹10,000 with ₹1,800 of tax inside the MRP. Small amounts
+    work the same way: ₹999 at 5% carries ₹49.95 of GST, for a total of ₹1,048.95.</p>
+
+    <h2>How to use this calculator</h2>
+    <ol>
+      <li>Choose “Add GST” if your amount is the price <em>before</em> tax, or “Remove GST” if it already
+      includes tax, like an MRP.</li>
+      <li>Type the amount and pick the rate — or choose “Custom rate” for rates like 0.1% or 3% used for
+      special categories.</li>
+      <li>Read the base amount and GST, then use the CGST + SGST pair for a same-state bill or the IGST
+      figure for an out-of-state bill.</li>
+      <li>Use “Copy result” to paste the breakup into a quotation or message.</li>
+    </ol>
+  </div>
+
+  <section class="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">Frequently asked questions</h2>
+    <details>
+      <summary>What is GST?</summary>
+      <p>GST (Goods and Services Tax) is India's main indirect tax, charged when goods or services are sold. It replaced a chain of older taxes like VAT, service tax and excise. The seller collects GST from the buyer and pays it to the government, and registered businesses usually claim credit for the GST they paid on their own purchases.</p>
+    </details>
+    <details>
+      <summary>Should I look at CGST + SGST, or IGST?</summary>
+      <p>It depends on where the buyer and seller are. For a sale within the same state, the tax splits into CGST (central share) and SGST (state share) — half each. For a sale across state lines, the full amount is charged as IGST instead. You pay one or the other, never both; the total GST is the same either way.</p>
+    </details>
+    <details>
+      <summary>How do I remove GST from an MRP or invoice total?</summary>
+      <p>Divide the inclusive amount by (1 + rate ÷ 100). Example: an MRP of ₹11,800 at 18% gives a base price of ₹11,800 ÷ 1.18 = ₹10,000, so the GST inside it is ₹1,800. Choose “Remove GST” in this calculator and it does this for you. A common mistake is subtracting 18% of ₹11,800, which gives the wrong answer.</p>
+    </details>
+    <details>
+      <summary>What are the GST rates in India?</summary>
+      <p>Most goods and services fall in the standard slabs of 5%, 12%, 18% and 28%, with some items at 0% or exempt, and special rates for a few categories. Rates and exemptions are set by the GST Council and can change through official notifications, so for a real invoice confirm the current rate for your item's HSN or SAC code from official sources.</p>
+    </details>
+    <details>
+      <summary>Can I use this calculator for my actual GST filing?</summary>
+      <p>Use it for quick estimates, quotations and checking bills. It is not a substitute for your accountant or CA: real invoices can involve place-of-supply rules, exemptions, reverse charge, the composition scheme and input tax credit conditions that a simple calculator does not cover.</p>
+    </details>
+  </section>
+
+  <nav class="related" aria-labelledby="related-h">
+    <h2 id="related-h">Related tools</h2>
+    <ul>
+      <li><a href="emi-calculator.html">EMI Calculator</a></li>
+      <li><a href="sip-calculator.html">SIP Calculator</a></li>
+      <li><a href="../index.html#tools">All ToolPitara tools</a></li>
+    </ul>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-in">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="lm-star" d="M16 .6l1.9 4.9 4.9 1.9-4.9 1.9L16 14.2l-1.9-4.9L9.2 7.4l4.9-1.9z"/><rect class="lm-lid" x="3" y="14.5" width="26" height="4.6" rx="2.3"/><rect class="lm-box" x="5.5" y="19.1" width="21" height="10.4" rx="3"/><circle cx="16" cy="24.3" r="1.9" fill="#ffffff" opacity=".92"/></svg><strong>ToolPitara</strong></div>
+    <ul class="footer-links">
+      <li><a href="../about.html">About Us</a></li>
+      <li><a href="../contact.html">Contact Us</a></li>
+      <li><a href="../privacy.html">Privacy Policy</a></li>
+      <li><a href="../terms.html">Terms &amp; Conditions</a></li>
+      <li><a href="../disclaimer.html">Disclaimer</a></li>
+    </ul>
+    <p>Free online tools that run entirely in your browser — nothing you type is uploaded or stored.</p>
+    <p>Calculator results are estimates for information only, not financial or tax advice. Verify important figures with your bank, CA or official sources.</p>
+  </div>
+</footer>
+
+<script src="../assets/app.js" defer></script>
+<script src="../assets/gst.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+  var G = window.TPGST;
+  var amountEl = document.getElementById('gstAmount');
+  var amountLabel = document.getElementById('amountLabel');
+  var rateEl = document.getElementById('gstRate');
+  var customField = document.getElementById('customRateField');
+  var customEl = document.getElementById('customRate');
+  var errAmount = document.getElementById('gstAmountErr');
+  var errCustom = document.getElementById('customRateErr');
+  var btnAdd = document.getElementById('modeAdd');
+  var btnRemove = document.getElementById('modeRemove');
+  var copyMsg = document.getElementById('copyMsg');
+  var mode = 'add';
+  var lastResult = null;
+
+  var out = {
+    base: document.getElementById('outBase'),
+    gst: document.getElementById('outGST'),
+    cgst: document.getElementById('outCGST'),
+    sgst: document.getElementById('outSGST'),
+    igst: document.getElementById('outIGST'),
+    total: document.getElementById('outTotal'),
+    grand: document.getElementById('outGrand')
+  };
+
+  function rupees(v) { return '₹' + G.formatINR(v, 2); }
+
+  function setError(el, errEl, msg) {
+    errEl.textContent = msg;
+    el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    return !msg;
+  }
+
+  function currentRate() {
+    if (rateEl.value !== 'custom') { setError(customEl, errCustom, ''); return parseFloat(rateEl.value); }
+    var r = parseFloat(customEl.value);
+    if (customEl.value.trim() === '' || isNaN(r)) { setError(customEl, errCustom, 'Please enter the custom GST rate.'); return null; }
+    if (r < 0 || r > 100) { setError(customEl, errCustom, 'The GST rate must be between 0% and 100%.'); return null; }
+    setError(customEl, errCustom, '');
+    return r;
+  }
+
+  function calculate() {
+    var amount = parseFloat(amountEl.value);
+    var ok = true;
+    if (amountEl.value.trim() === '' || isNaN(amount)) { ok = setError(amountEl, errAmount, 'Please enter an amount, for example 10000.'); }
+    else if (amount <= 0) { ok = setError(amountEl, errAmount, 'The amount must be more than zero.'); }
+    else if (amount > 1000000000) { ok = setError(amountEl, errAmount, 'That amount is too large for this calculator.'); }
+    else { setError(amountEl, errAmount, ''); }
+
+    var rate = currentRate();
+    if (!ok || rate === null) { lastResult = null; return; }
+
+    var res = mode === 'add' ? G.addGST(amount, rate) : G.removeGST(amount, rate);
+    lastResult = { res: res, rate: rate, mode: mode };
+    out.base.textContent = rupees(res.base);
+    out.gst.textContent = rupees(res.gst);
+    out.cgst.textContent = rupees(res.cgst);
+    out.sgst.textContent = rupees(res.sgst);
+    out.igst.textContent = rupees(res.igst);
+    out.total.textContent = rupees(res.total);
+    out.grand.textContent = rupees(res.total);
+  }
+
+  function setMode(m) {
+    mode = m;
+    btnAdd.setAttribute('aria-pressed', m === 'add' ? 'true' : 'false');
+    btnRemove.setAttribute('aria-pressed', m === 'remove' ? 'true' : 'false');
+    amountLabel.textContent = m === 'add' ? 'Amount without GST (₹)' : 'Amount including GST / MRP (₹)';
+    document.getElementById('totalLabel').textContent = m === 'add' ? 'Total amount (including GST)' : 'Total amount you entered (including GST)';
+    calculate();
+  }
+  btnAdd.addEventListener('click', function () { setMode('add'); });
+  btnRemove.addEventListener('click', function () { setMode('remove'); });
+
+  rateEl.addEventListener('change', function () {
+    customField.hidden = rateEl.value !== 'custom';
+    calculate();
+  });
+  [amountEl, customEl].forEach(function (el) { el.addEventListener('input', calculate); });
+
+  document.getElementById('resetBtn').addEventListener('click', function () {
+    amountEl.value = '10000';
+    rateEl.value = '18';
+    customField.hidden = true;
+    customEl.value = '18';
+    copyMsg.textContent = '';
+    setMode('add');
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    if (!lastResult) { copyMsg.textContent = 'Please fix the highlighted fields first.'; return; }
+    var r = lastResult.res;
+    var text = 'GST calculation (ToolPitara)\n' +
+      'Mode: ' + (lastResult.mode === 'add' ? 'GST added' : 'GST removed (inclusive amount)') + '\n' +
+      'GST rate: ' + lastResult.rate + '%\n' +
+      'Base amount (without GST): ' + rupees(r.base) + '\n' +
+      'GST amount: ' + rupees(r.gst) + '\n' +
+      'CGST: ' + rupees(r.cgst) + '  SGST: ' + rupees(r.sgst) + '  (same-state sale)\n' +
+      'IGST: ' + rupees(r.igst) + '  (inter-state sale)\n' +
+      'Total amount: ' + rupees(r.total);
+    function done() { copyMsg.textContent = 'Result copied — you can paste it anywhere.'; }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.position = 'absolute'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); }
+      catch (e) { copyMsg.textContent = 'Copy did not work in this browser — please note the figures above.'; }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  });
+
+  calculate();
+});
+</script>
+</body>
+</html>

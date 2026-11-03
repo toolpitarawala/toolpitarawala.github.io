@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMI Calculator — Calculate Your Loan EMI Online Free | ToolPitara</title>
+<meta name="description" content="Free EMI calculator for home, car and personal loans. Enter the loan amount, interest rate and tenure to get your monthly EMI, total interest and a year-by-year repayment table — calculated privately in your browser.">
+<link rel="canonical" href="https://toolpitarawala.github.io/tools/emi-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolPitara">
+<meta property="og:title" content="EMI Calculator — Calculate Your Loan EMI Online Free | ToolPitara">
+<meta property="og:description" content="Monthly EMI, total interest and a year-by-year repayment table for any loan. Free, no sign-up, calculated in your browser.">
+<meta property="og:url" content="https://toolpitarawala.github.io/tools/emi-calculator.html">
+<script>try{var t=localStorage.getItem('tp-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}</script>
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is EMI?",
+      "acceptedAnswer": { "@type": "Answer", "text": "EMI means Equated Monthly Instalment — the fixed amount you pay the lender every month until a loan is fully repaid. Each instalment contains a part of the principal (the amount you borrowed) and a part of the interest. In the early months the interest part is bigger; towards the end, most of the instalment goes towards the principal." }
+    },
+    {
+      "@type": "Question",
+      "name": "How is EMI calculated?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Banks use the formula EMI = P × r × (1 + r)^n ÷ ((1 + r)^n − 1), where P is the loan amount, r is the monthly interest rate (annual rate divided by 12 and then by 100), and n is the number of monthly instalments. This calculator uses exactly that formula." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does choosing a longer tenure save money?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. A longer tenure makes the monthly EMI smaller and easier to pay, but you pay interest for more months, so the total interest goes up — often by a lot. A shorter tenure costs more per month but less overall. Compare both in the calculator by changing only the tenure and watching the total interest." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is my EMI if the interest rate is 0%?",
+      "acceptedAnswer": { "@type": "Answer", "text": "With no interest, the EMI is simply the loan amount divided by the number of months. For example, ₹1,20,000 over 12 months at 0% is ₹10,000 per month, and the total you repay is exactly ₹1,20,000." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the result from this calculator exact?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It is an accurate estimate based on the standard EMI formula, assuming a fixed interest rate and regular monthly payments. Your bank's actual figure can differ slightly because of processing fees, insurance, the exact number of days in a month, or a floating rate that changes over time. Always confirm the final EMI with your lender before signing." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="logo" href="../index.html"><svg class="logo-mark" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="lm-star" d="M16 .6l1.9 4.9 4.9 1.9-4.9 1.9L16 14.2l-1.9-4.9L9.2 7.4l4.9-1.9z"/><rect class="lm-lid" x="3" y="14.5" width="26" height="4.6" rx="2.3"/><rect class="lm-box" x="5.5" y="19.1" width="21" height="10.4" rx="3"/><circle cx="16" cy="24.3" r="1.9" fill="#ffffff" opacity=".92"/></svg>Tool<span>Pitara</span></a>
+    <nav class="main-nav" aria-label="Main">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#tools">Tools</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="theme-btn" id="themeToggle" aria-pressed="false">🌙 Dark mode</button>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <div class="page-head">
+    <h1>EMI Calculator</h1>
+    <p class="lede">Find the monthly instalment for a home, car, personal or education loan — along with the
+    total interest you will pay and how your balance falls year by year. Everything is calculated on your
+    device; the numbers you type never leave your browser.</p>
+  </div>
+
+  <div class="tool-layout">
+    <section class="panel" aria-labelledby="emi-inputs-h">
+      <h2 id="emi-inputs-h">Your loan details</h2>
+      <form id="emiForm" novalidate>
+        <div class="field">
+          <label for="loanAmount">Loan amount (₹)</label>
+          <input type="number" id="loanAmount" inputmode="decimal" min="0" step="any" value="500000" aria-describedby="loanAmountErr">
+          <p class="error-text" id="loanAmountErr" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="interestRate">Interest rate (% per year)</label>
+          <input type="number" id="interestRate" inputmode="decimal" min="0" step="any" value="9" aria-describedby="interestRateErr">
+          <p class="error-text" id="interestRateErr" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="tenureValue">Loan tenure</label>
+          <input type="number" id="tenureValue" inputmode="numeric" min="0" step="any" value="5" aria-describedby="tenureErr">
+          <p class="error-text" id="tenureErr" role="alert"></p>
+        </div>
+        <div class="field">
+          <span class="hint" id="tenureToggleLabel">Tenure is in</span>
+          <div class="toggle-row" role="group" aria-labelledby="tenureToggleLabel">
+            <button type="button" id="tenureYears" aria-pressed="true">Years</button>
+            <button type="button" id="tenureMonths" aria-pressed="false">Months</button>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn" id="copyBtn">Copy result</button>
+          <button type="button" class="btn secondary" id="resetBtn">Reset</button>
+        </div>
+        <p class="copy-msg" id="copyMsg" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="emi-results-h">
+      <h2 id="emi-results-h">Your result</h2>
+      <div aria-live="polite">
+        <div class="result-grid">
+          <div class="result-item big"><div class="k">Monthly EMI</div><div class="v" id="outEMI">—</div></div>
+          <div class="result-item"><div class="k">Total interest</div><div class="v" id="outInterest">—</div></div>
+          <div class="result-item"><div class="k">Total amount payable</div><div class="v" id="outTotal">—</div></div>
+        </div>
+        <canvas class="chart" id="emiChart" width="640" height="360" role="img"
+          aria-label="Donut chart comparing the loan principal with the total interest"></canvas>
+        <div class="legend" aria-hidden="true">
+          <span><i style="background:#0b8a5f"></i>Principal</span>
+          <span><i style="background:#e08a00"></i>Interest</span>
+        </div>
+        <p class="chart-cap">Out of every rupee you repay, how much is the loan itself and how much is interest.</p>
+      </div>
+    </section>
+  </div>
+
+  <section style="margin-top:20px" aria-labelledby="amort-h">
+    <div class="table-scroll">
+      <table>
+        <caption id="amort-h">Year-by-year repayment summary (each row groups 12 monthly instalments)</caption>
+        <thead>
+          <tr><th scope="col">Year</th><th scope="col">Principal paid (₹)</th><th scope="col">Interest paid (₹)</th><th scope="col">Balance left (₹)</th></tr>
+        </thead>
+        <tbody id="amortBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="note">Please note: this calculator gives an estimate for planning only — it is not financial advice.
+  Your bank may charge processing fees or use a floating rate, so confirm the exact EMI in your loan agreement.</p>
+
+  <div class="prose">
+    <h2>What is EMI?</h2>
+    <p>EMI is short for <strong>Equated Monthly Instalment</strong>. When you take a loan, you do not repay it in
+    one shot at the end; you pay the same fixed amount every month until the loan closes. Part of each payment
+    covers the interest for that month, and the rest reduces the amount you still owe (the principal).</p>
+    <p>Because interest is charged on the balance still outstanding, the mix changes over time. In the first year
+    a large share of your EMI is interest. As the balance shrinks, the interest share falls and more of the same
+    EMI goes into clearing the principal. That is exactly what the year-by-year table above shows for your loan.</p>
+
+    <h2>The EMI formula, explained</h2>
+    <p class="formula">EMI = P × r × (1 + r)<sup>n</sup> ÷ ((1 + r)<sup>n</sup> − 1)</p>
+    <ul>
+      <li><strong>P</strong> — the principal: the loan amount you borrow.</li>
+      <li><strong>r</strong> — the monthly interest rate: take the yearly rate, divide by 12, then by 100.
+      A 9% yearly rate becomes 9 ÷ 12 ÷ 100 = 0.0075 per month.</li>
+      <li><strong>n</strong> — the number of monthly payments: years × 12. Five years means 60 instalments.</li>
+    </ul>
+    <p>If the interest rate is 0%, life is simpler: the EMI is just P ÷ n.</p>
+
+    <h2>A worked example</h2>
+    <p>Suppose you borrow <strong>₹5,00,000 at 9% per year for 5 years</strong> — a typical personal loan.
+    Here r = 0.0075 and n = 60. Putting the numbers in:</p>
+    <ul>
+      <li>Monthly EMI: <strong>₹10,379</strong></li>
+      <li>Total interest over 5 years: <strong>₹1,22,751</strong></li>
+      <li>Total amount you repay: <strong>₹6,22,751</strong> (the ₹5,00,000 you borrowed, plus interest)</li>
+      <li>After the first year you have paid ₹41,635 in interest and your balance is ₹4,17,085.</li>
+      <li>In the final year the interest drops to just ₹5,865, because most of the loan is already repaid.</li>
+    </ul>
+    <p>Try the same figures in the calculator above — it is pre-filled with them — then move only the tenure
+    to 7 years. The EMI falls, but watch the total interest climb. That one comparison teaches more about loans
+    than any advertisement.</p>
+
+    <h2>How to use this calculator</h2>
+    <ol>
+      <li>Type the loan amount your bank has approved or that you plan to apply for.</li>
+      <li>Enter the yearly interest rate from the offer letter — not a rounded “starting from” rate from an ad.</li>
+      <li>Set the tenure in years or months, whichever your offer uses.</li>
+      <li>Read the monthly EMI first, then the total interest — that second number is the real cost of the loan.</li>
+      <li>Use “Copy result” to save a short summary, handy when comparing offers from two banks side by side.</li>
+    </ol>
+  </div>
+
+  <section class="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">Frequently asked questions</h2>
+    <details>
+      <summary>What is EMI?</summary>
+      <p>EMI means Equated Monthly Instalment — the fixed amount you pay the lender every month until a loan is fully repaid. Each instalment contains a part of the principal (the amount you borrowed) and a part of the interest. In the early months the interest part is bigger; towards the end, most of the instalment goes towards the principal.</p>
+    </details>
+    <details>
+      <summary>How is EMI calculated?</summary>
+      <p>Banks use the formula EMI = P × r × (1 + r)^n ÷ ((1 + r)^n − 1), where P is the loan amount, r is the monthly interest rate (annual rate divided by 12 and then by 100), and n is the number of monthly instalments. This calculator uses exactly that formula.</p>
+    </details>
+    <details>
+      <summary>Does choosing a longer tenure save money?</summary>
+      <p>No. A longer tenure makes the monthly EMI smaller and easier to pay, but you pay interest for more months, so the total interest goes up — often by a lot. A shorter tenure costs more per month but less overall. Compare both in the calculator by changing only the tenure and watching the total interest.</p>
+    </details>
+    <details>
+      <summary>What is my EMI if the interest rate is 0%?</summary>
+      <p>With no interest, the EMI is simply the loan amount divided by the number of months. For example, ₹1,20,000 over 12 months at 0% is ₹10,000 per month, and the total you repay is exactly ₹1,20,000.</p>
+    </details>
+    <details>
+      <summary>Is the result from this calculator exact?</summary>
+      <p>It is an accurate estimate based on the standard EMI formula, assuming a fixed interest rate and regular monthly payments. Your bank's actual figure can differ slightly because of processing fees, insurance, the exact number of days in a month, or a floating rate that changes over time. Always confirm the final EMI with your lender before signing.</p>
+    </details>
+  </section>
+
+  <nav class="related" aria-labelledby="related-h">
+    <h2 id="related-h">Related tools</h2>
+    <ul>
+      <li><a href="sip-calculator.html">SIP Calculator</a></li>
+      <li><a href="gst-calculator.html">GST Calculator</a></li>
+      <li><a href="../index.html#tools">All ToolPitara tools</a></li>
+    </ul>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-in">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="lm-star" d="M16 .6l1.9 4.9 4.9 1.9-4.9 1.9L16 14.2l-1.9-4.9L9.2 7.4l4.9-1.9z"/><rect class="lm-lid" x="3" y="14.5" width="26" height="4.6" rx="2.3"/><rect class="lm-box" x="5.5" y="19.1" width="21" height="10.4" rx="3"/><circle cx="16" cy="24.3" r="1.9" fill="#ffffff" opacity=".92"/></svg><strong>ToolPitara</strong></div>
+    <ul class="footer-links">
+      <li><a href="../about.html">About Us</a></li>
+      <li><a href="../contact.html">Contact Us</a></li>
+      <li><a href="../privacy.html">Privacy Policy</a></li>
+      <li><a href="../terms.html">Terms &amp; Conditions</a></li>
+      <li><a href="../disclaimer.html">Disclaimer</a></li>
+    </ul>
+    <p>Free online tools that run entirely in your browser — nothing you type is uploaded or stored.</p>
+    <p>Calculator results are estimates for information only, not financial or tax advice. Verify important figures with your bank, CA or official sources.</p>
+  </div>
+</footer>
+
+<script src="../assets/app.js" defer></script>
+<script src="../assets/emi.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+  var E = window.TPEMI;
+  var amountEl = document.getElementById('loanAmount');
+  var rateEl = document.getElementById('interestRate');
+  var tenureEl = document.getElementById('tenureValue');
+  var errAmount = document.getElementById('loanAmountErr');
+  var errRate = document.getElementById('interestRateErr');
+  var errTenure = document.getElementById('tenureErr');
+  var btnYears = document.getElementById('tenureYears');
+  var btnMonths = document.getElementById('tenureMonths');
+  var outEMI = document.getElementById('outEMI');
+  var outInterest = document.getElementById('outInterest');
+  var outTotal = document.getElementById('outTotal');
+  var tbody = document.getElementById('amortBody');
+  var canvas = document.getElementById('emiChart');
+  var copyMsg = document.getElementById('copyMsg');
+  var unit = 'years';
+  var lastResult = null;
+
+  function setError(el, errEl, msg) {
+    errEl.textContent = msg;
+    el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    return !msg;
+  }
+
+  function readInputs() {
+    var amount = parseFloat(amountEl.value);
+    var rate = parseFloat(rateEl.value);
+    var tenure = parseFloat(tenureEl.value);
+    var ok = true;
+
+    if (amountEl.value.trim() === '' || isNaN(amount)) { ok = setError(amountEl, errAmount, 'Please enter the loan amount, for example 500000.'); }
+    else if (amount <= 0) { ok = setError(amountEl, errAmount, 'The loan amount must be more than zero.'); }
+    else if (amount > 100000000) { ok = setError(amountEl, errAmount, 'That is above ₹10 crore — this calculator is meant for everyday loans.'); }
+    else { setError(amountEl, errAmount, ''); }
+
+    if (rateEl.value.trim() === '' || isNaN(rate)) { ok = setError(rateEl, errRate, 'Please enter the yearly interest rate, for example 9.') && ok; }
+    else if (rate < 0) { ok = setError(rateEl, errRate, 'The interest rate cannot be negative. Enter 0 if there is no interest.') && ok; }
+    else if (rate > 50) { ok = setError(rateEl, errRate, 'That rate looks too high — please check the offer letter (rates are usually between 0% and 50%).') && ok; }
+    else { setError(rateEl, errRate, ''); }
+
+    var months = unit === 'years' ? Math.round(tenure * 12) : Math.round(tenure);
+    if (tenureEl.value.trim() === '' || isNaN(tenure)) { ok = setError(tenureEl, errTenure, 'Please enter the loan tenure.') && ok; }
+    else if (tenure <= 0 || months < 1) { ok = setError(tenureEl, errTenure, 'The tenure must be at least 1 month.') && ok; }
+    else if (months > 480) { ok = setError(tenureEl, errTenure, 'The longest tenure supported is 40 years (480 months).') && ok; }
+    else { setError(tenureEl, errTenure, ''); }
+
+    return ok ? { amount: amount, rate: rate, months: months } : null;
+  }
+
+  function drawChart(principal, interest) {
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var total = principal + interest;
+    if (!(total > 0)) return;
+    var cx = W / 2, cy = H / 2, radius = Math.min(W, H) / 2 - 14, inner = radius * 0.58;
+    var start = -Math.PI / 2;
+    function slice(frac, color, from) {
+      var end = from + frac * Math.PI * 2;
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, from, end);
+      ctx.arc(cx, cy, inner, end, from, true);
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+      return end;
+    }
+    var afterPrincipal = slice(principal / total, '#0b8a5f', start);
+    slice(interest / total, '#e08a00', afterPrincipal);
+    ctx.fillStyle = dark ? '#e8edf3' : '#17202b';
+    ctx.font = '700 26px system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(Math.round((principal / total) * 100) + '%', cx, cy - 4);
+    ctx.font = '500 17px system-ui, sans-serif';
+    ctx.fillText('is your loan', cx, cy + 22);
+    canvas.setAttribute('aria-label',
+      'Donut chart: principal is ' + E.formatINR(Math.round(principal)) + ' rupees (' +
+      Math.round((principal / total) * 100) + ' percent) and interest is ' +
+      E.formatINR(Math.round(interest)) + ' rupees out of a total repayment of ' +
+      E.formatINR(Math.round(total)) + ' rupees.');
+  }
+
+  function calculate() {
+    var inp = readInputs();
+    if (!inp) { lastResult = null; return; }
+    var res = E.amortisation(inp.amount, inp.rate, inp.months);
+    lastResult = { inp: inp, res: res };
+    outEMI.textContent = '₹' + E.formatINR(Math.round(res.emi));
+    outInterest.textContent = '₹' + E.formatINR(Math.round(res.totalInterest));
+    outTotal.textContent = '₹' + E.formatINR(Math.round(res.totalPayment));
+    var html = '';
+    res.years.forEach(function (y) {
+      html += '<tr><th scope="row">Year ' + y.year + '</th><td>' + E.formatINR(Math.round(y.principal)) +
+        '</td><td>' + E.formatINR(Math.round(y.interest)) + '</td><td>' + E.formatINR(Math.round(y.balance)) + '</td></tr>';
+    });
+    tbody.innerHTML = html;
+    drawChart(inp.amount, res.totalInterest);
+  }
+
+  [amountEl, rateEl, tenureEl].forEach(function (el) { el.addEventListener('input', calculate); });
+
+  function setUnit(u) {
+    if (u === unit) return;
+    var v = parseFloat(tenureEl.value);
+    if (!isNaN(v) && v > 0) {
+      tenureEl.value = u === 'months' ? Math.round(v * 12) : Math.round((v / 12) * 100) / 100;
+    }
+    unit = u;
+    btnYears.setAttribute('aria-pressed', u === 'years' ? 'true' : 'false');
+    btnMonths.setAttribute('aria-pressed', u === 'months' ? 'true' : 'false');
+    calculate();
+  }
+  btnYears.addEventListener('click', function () { setUnit('years'); });
+  btnMonths.addEventListener('click', function () { setUnit('months'); });
+
+  document.getElementById('resetBtn').addEventListener('click', function () {
+    amountEl.value = '500000'; rateEl.value = '9'; tenureEl.value = '5';
+    if (unit !== 'years') setUnit('years');
+    copyMsg.textContent = '';
+    calculate();
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    if (!lastResult) { copyMsg.textContent = 'Please fix the highlighted fields first.'; return; }
+    var r = lastResult.res, i = lastResult.inp;
+    var text = 'EMI calculation (ToolPitara)\n' +
+      'Loan amount: ₹' + E.formatINR(i.amount) + '\n' +
+      'Interest rate: ' + i.rate + '% per year\n' +
+      'Tenure: ' + i.months + ' months\n' +
+      'Monthly EMI: ₹' + E.formatINR(Math.round(r.emi)) + '\n' +
+      'Total interest: ₹' + E.formatINR(Math.round(r.totalInterest)) + '\n' +
+      'Total payable: ₹' + E.formatINR(Math.round(r.totalPayment));
+    function done() { copyMsg.textContent = 'Result copied — you can paste it anywhere.'; }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.position = 'absolute'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); }
+      catch (e) { copyMsg.textContent = 'Copy did not work in this browser — please note the figures above.'; }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  });
+
+  document.addEventListener('tp-theme-change', function () {
+    if (lastResult) drawChart(lastResult.inp.amount, lastResult.res.totalInterest);
+  });
+
+  calculate();
+});
+</script>
+</body>
+</html>
