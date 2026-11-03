@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo &amp; Signature Resizer — Exact KB Size for Exam Forms | ToolPitara</title>
+<meta name="description" content="Free photo and signature resizer for Indian exam and job forms. Pick a preset (passport, SSC, bank exams) or type the exact pixels and KB your form asks for, and download a JPG that fits — resized privately in your browser, nothing is uploaded.">
+<link rel="canonical" href="https://toolpitarawala.github.io/tools/photo-signature-resizer.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ToolPitara">
+<meta property="og:title" content="Photo &amp; Signature Resizer — Exact KB Size for Exam Forms | ToolPitara">
+<meta property="og:description" content="Resize a photo or signature to the exact pixels and KB an exam or job form asks for. Free, no sign-up, done in your browser.">
+<meta property="og:url" content="https://toolpitarawala.github.io/tools/photo-signature-resizer.html">
+<script>try{var t=localStorage.getItem('tp-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}</script>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .drop-zone { border: 2px dashed var(--border); border-radius: 10px; padding: 16px; text-align: center; background: var(--surface-2); }
+  .drop-zone.drag { border-color: var(--brand); }
+  .drop-zone p { margin: 6px 0; color: var(--text-soft); }
+  .preview-img { max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; display: block; margin: 0 auto; }
+  .file-info { font-weight: 600; margin: 10px 0 0; overflow-wrap: anywhere; }
+  .ok-text { color: var(--brand-strong); font-weight: 700; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is my photo uploaded to a server?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The resizing happens entirely in your web browser, on your own phone or computer. Your photo never travels to us or to any server — we could not see it even if we wanted to. You can check this yourself: once the page has loaded, the tool even works with your internet switched off." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do exam forms reject photos?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Almost always for one of four reasons: the pixel dimensions are wrong (for example 1000 × 1000 when the form wants 200 × 230), the file size is outside the allowed KB range, the file is a PNG or another format when the form wants JPG, or the photo is blurry or too dark. This tool fixes the first three: exact pixels, a size inside the KB range, and always a JPG." }
+    },
+    {
+      "@type": "Question",
+      "name": "What size photo do SSC and bank exam forms need?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The commonly published sizes are: SSC — photo 3.5 × 4.5 cm, 20 to 50 KB, and signature 10 to 20 KB; IBPS and SBI bank exams — photo 200 × 230 pixels, 20 to 50 KB, and signature 140 × 60 pixels, 10 to 20 KB. Exam boards do change these numbers between notifications, so always match the figures in your own form's official notice. Every preset in this tool can be edited." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get a clear signature under 20 KB?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sign once, large and bold, with a dark blue or black pen on plain white paper. Photograph it straight from above in good light, with no shadow across the paper. Then use the signature preset here — the tool crops tightly to the signature area and compresses it into the KB range. A signature that is faint or photographed at an angle is the usual reason forms reject it." }
+    },
+    {
+      "@type": "Question",
+      "name": "My form's size is not in the presets. What should I do?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Choose the Custom preset and type the exact width, height and maximum KB from your form's instructions. The tool works for any size — government job forms, college admissions, visa photos and ID cards included — as long as the output is a JPG photograph or signature." }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2141817975968460"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="logo" href="../index.html"><svg class="logo-mark" width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="lm-star" d="M16 .6l1.9 4.9 4.9 1.9-4.9 1.9L16 14.2l-1.9-4.9L9.2 7.4l4.9-1.9z"/><rect class="lm-lid" x="3" y="14.5" width="26" height="4.6" rx="2.3"/><rect class="lm-box" x="5.5" y="19.1" width="21" height="10.4" rx="3"/><circle cx="16" cy="24.3" r="1.9" fill="#ffffff" opacity=".92"/></svg>Tool<span>Pitara</span></a>
+    <nav class="main-nav" aria-label="Main">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#tools">Tools</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="theme-btn" id="themeToggle" aria-pressed="false">🌙 Dark mode</button>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <div class="page-head">
+    <h1>Photo &amp; Signature Resizer</h1>
+    <p class="lede">Exam and job forms want your photo or signature at an exact pixel size and an exact
+    size in KB — and reject it without telling you why when it does not fit. Choose the photo, pick a
+    preset or type the size your form asks for, and download a JPG that fits. Everything happens on
+    your device; your photo is never uploaded.</p>
+  </div>
+
+  <div class="tool-layout">
+    <section class="panel" aria-labelledby="resizer-inputs-h">
+      <h2 id="resizer-inputs-h">1 · Your photo or signature</h2>
+      <form id="resizeForm" novalidate>
+        <div class="field">
+          <span class="hint" id="kindLabel">I am resizing a</span>
+          <div class="toggle-row" role="group" aria-labelledby="kindLabel">
+            <button type="button" id="kindPhoto" aria-pressed="true">Photo</button>
+            <button type="button" id="kindSign" aria-pressed="false">Signature</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fileInput">Choose the image</label>
+          <div class="drop-zone" id="dropZone">
+            <input type="file" id="fileInput" accept="image/*" aria-describedby="fileErr">
+            <p>…or drag and drop the image here. JPG, PNG and most phone photos work.</p>
+          </div>
+          <p class="file-info" id="fileInfo" aria-live="polite"></p>
+          <p class="error-text" id="fileErr" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="presetSelect">Form preset</label>
+          <select id="presetSelect"></select>
+          <p class="hint">Presets are the sizes exam boards commonly publish. Forms do change their
+          rules — if your notice gives different numbers, type them below; your numbers win.</p>
+        </div>
+        <div class="field">
+          <label for="widthPx">Width (pixels)</label>
+          <input type="number" id="widthPx" inputmode="numeric" min="1" step="1" value="413" aria-describedby="sizeErr">
+        </div>
+        <div class="field">
+          <label for="heightPx">Height (pixels)</label>
+          <input type="number" id="heightPx" inputmode="numeric" min="1" step="1" value="531" aria-describedby="sizeErr">
+        </div>
+        <div class="field">
+          <label for="maxKB">Maximum file size (KB)</label>
+          <input type="number" id="maxKB" inputmode="numeric" min="1" step="1" value="50" aria-describedby="sizeErr">
+          <p class="hint" id="minHint"></p>
+          <p class="error-text" id="sizeErr" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="bgSelect">Background colour</label>
+          <select id="bgSelect">
+            <option value="#ffffff" selected>White</option>
+            <option value="#dbeafe">Light blue</option>
+            <option value="#e5e7eb">Light grey</option>
+          </select>
+          <p class="hint">Only shows where your image has empty or transparent edges — most forms
+          ask for a plain white background.</p>
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn" id="resizeBtn">Resize image</button>
+          <button type="button" class="btn secondary" id="resetBtn">Reset</button>
+        </div>
+        <p class="copy-msg" id="formMsg" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="resizer-results-h">
+      <h2 id="resizer-results-h">2 · Your resized image</h2>
+      <div aria-live="polite">
+        <img class="preview-img" id="previewImg" alt="Preview of your resized image" hidden>
+        <p id="previewPlaceholder" class="hint">Your resized image will appear here. Check that the
+        face (or signature) is clear and fully inside the frame before you download it.</p>
+        <div class="result-grid" style="margin-top:16px">
+          <div class="result-item big"><div class="k">Final file size</div><div class="v" id="outSize">—</div></div>
+          <div class="result-item"><div class="k">Dimensions</div><div class="v" id="outDims">—</div></div>
+          <div class="result-item"><div class="k">Format</div><div class="v" id="outFormat">—</div></div>
+        </div>
+        <p class="copy-msg" id="resultMsg"></p>
+        <div class="btn-row">
+          <a class="btn" id="downloadBtn" href="#" download="toolpitara-resized.jpg" hidden>Download JPG</a>
+        </div>
+        <p class="hint">The download is created on your device. Nothing was uploaded, so there is
+        nothing for us to keep, lose or leak.</p>
+      </div>
+    </section>
+  </div>
+
+  <p class="note">Please note: presets use the sizes exam boards commonly publish, but boards change
+  them between notifications. Always match the width, height and KB in your own form's official
+  notice — the figures you type here are the ones this tool follows exactly.</p>
+
+  <div class="prose">
+    <h2>How this tool works</h2>
+    <p>A phone photo is far bigger than any form wants — often 3000 × 4000 pixels and several MB.
+    This tool does two things to it. First, it centre-crops the photo to the shape your form asks
+    for and scales it to the <strong>exact pixel dimensions</strong>, so nothing is stretched or
+    squeezed. Second, it saves the result as a JPEG and adjusts the quality until the file lands
+    <strong>under your KB limit</strong> — as clear as possible, but never over the size the form
+    allows. If an image genuinely cannot fit (a very detailed photo squeezed into a tiny KB limit),
+    the tool tells you plainly instead of quietly giving you the wrong size.</p>
+
+    <h2>How to use it</h2>
+    <ol>
+      <li>Choose <strong>Photo</strong> or <strong>Signature</strong>, then pick your image. On a
+      phone, your gallery or camera will open.</li>
+      <li>Pick the preset for your form (SSC, bank exams, passport size) — or choose Custom and type
+      the exact pixels and KB from your form's notice.</li>
+      <li>Press <strong>Resize image</strong>. The preview shows exactly what will be uploaded to
+      your form: check the face or signature is complete, straight and clear.</li>
+      <li>Press <strong>Download JPG</strong> and attach that file in your form. Keep the original
+      photo safe — this resized copy is only for the form.</li>
+    </ol>
+
+    <h2>A worked example</h2>
+    <p>Say you are filling an SSC form and your phone photo is 3000 × 4000 pixels, about 3 MB. The
+    form wants a photo of 3.5 × 4.5 cm between 20 and 50 KB. Choose the <strong>SSC exam photo</strong>
+    preset: the tool crops the photo to 413 × 531 pixels and compresses it until it is under 50 KB —
+    with a typical photo it lands somewhere around 30–45 KB, inside the allowed range, ready to
+    upload. A busy background or a very detailed photo lands nearer the top of the range; the tool
+    always shows you the final, exact KB before you download.</p>
+
+    <h2>Tips for a signature that passes</h2>
+    <ul>
+      <li>Sign <strong>large and bold</strong> with a dark blue or black pen on plain white paper —
+      a small, faint signature shrinks into a grey smudge.</li>
+      <li>Photograph it <strong>straight from above</strong> in daylight, with no shadow of your
+      hand or phone across the paper.</li>
+      <li>Use the signature preset and check the preview: the whole signature should sit inside the
+      frame with a small white margin around it.</li>
+      <li>Never sign on ruled or printed paper — lines behind the signature are a common reason for
+      rejection.</li>
+    </ul>
+
+    <h2>Why forms reject photos</h2>
+    <p>Rejection is rarely about how you look. It is about numbers: the pixels, the KB, or the file
+    format do not match the notice, so the form's software refuses the file — often without saying
+    which number was wrong. Match all three with this tool and keep your form's notice open beside
+    you while you fill it, and the photo step stops being the stressful part of the application.</p>
+  </div>
+
+  <section class="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">Frequently asked questions</h2>
+    <details>
+      <summary>Is my photo uploaded to a server?</summary>
+      <p>No. The resizing happens entirely in your web browser, on your own phone or computer. Your photo never travels to us or to any server — we could not see it even if we wanted to. You can check this yourself: once the page has loaded, the tool even works with your internet switched off.</p>
+    </details>
+    <details>
+      <summary>Why do exam forms reject photos?</summary>
+      <p>Almost always for one of four reasons: the pixel dimensions are wrong (for example 1000 × 1000 when the form wants 200 × 230), the file size is outside the allowed KB range, the file is a PNG or another format when the form wants JPG, or the photo is blurry or too dark. This tool fixes the first three: exact pixels, a size inside the KB range, and always a JPG.</p>
+    </details>
+    <details>
+      <summary>What size photo do SSC and bank exam forms need?</summary>
+      <p>The commonly published sizes are: SSC — photo 3.5 × 4.5 cm, 20 to 50 KB, and signature 10 to 20 KB; IBPS and SBI bank exams — photo 200 × 230 pixels, 20 to 50 KB, and signature 140 × 60 pixels, 10 to 20 KB. Exam boards do change these numbers between notifications, so always match the figures in your own form's official notice. Every preset in this tool can be edited.</p>
+    </details>
+    <details>
+      <summary>How do I get a clear signature under 20 KB?</summary>
+      <p>Sign once, large and bold, with a dark blue or black pen on plain white paper. Photograph it straight from above in good light, with no shadow across the paper. Then use the signature preset here — the tool crops tightly to the signature area and compresses it into the KB range. A signature that is faint or photographed at an angle is the usual reason forms reject it.</p>
+    </details>
+    <details>
+      <summary>My form's size is not in the presets. What should I do?</summary>
+      <p>Choose the Custom preset and type the exact width, height and maximum KB from your form's instructions. The tool works for any size — government job forms, college admissions, visa photos and ID cards included — as long as the output is a JPG photograph or signature.</p>
+    </details>
+  </section>
+
+  <nav class="related" aria-labelledby="related-h">
+    <h2 id="related-h">Related tools</h2>
+    <ul>
+      <li><a href="emi-calculator.html">EMI Calculator</a></li>
+      <li><a href="sip-calculator.html">SIP Calculator</a></li>
+      <li><a href="gst-calculator.html">GST Calculator</a></li>
+      <li><a href="../index.html#tools">All ToolPitara tools</a></li>
+    </ul>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-in">
+    <div class="footer-brand"><svg class="logo-mark" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path class="lm-star" d="M16 .6l1.9 4.9 4.9 1.9-4.9 1.9L16 14.2l-1.9-4.9L9.2 7.4l4.9-1.9z"/><rect class="lm-lid" x="3" y="14.5" width="26" height="4.6" rx="2.3"/><rect class="lm-box" x="5.5" y="19.1" width="21" height="10.4" rx="3"/><circle cx="16" cy="24.3" r="1.9" fill="#ffffff" opacity=".92"/></svg><strong>ToolPitara</strong></div>
+    <ul class="footer-links">
+      <li><a href="../about.html">About Us</a></li>
+      <li><a href="../contact.html">Contact Us</a></li>
+      <li><a href="../privacy.html">Privacy Policy</a></li>
+      <li><a href="../terms.html">Terms &amp; Conditions</a></li>
+      <li><a href="../disclaimer.html">Disclaimer</a></li>
+    </ul>
+    <p>Free online tools that run entirely in your browser — nothing you type is uploaded or stored.</p>
+    <p>Calculator results are estimates for information only, not financial or tax advice. Verify important figures with your bank, CA or official sources.</p>
+  </div>
+</footer>
+
+<script src="../assets/app.js" defer></script>
+<script src="../assets/resizer.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+  var R = window.TPResize;
+  var kind = 'photo';
+  var srcImg = null;
+  var srcURL = null;
+  var resultURL = null;
+  var currentPreset = 'passport';
+
+  var kindPhoto = document.getElementById('kindPhoto');
+  var kindSign = document.getElementById('kindSign');
+  var fileInput = document.getElementById('fileInput');
+  var dropZone = document.getElementById('dropZone');
+  var fileInfo = document.getElementById('fileInfo');
+  var fileErr = document.getElementById('fileErr');
+  var presetSelect = document.getElementById('presetSelect');
+  var widthEl = document.getElementById('widthPx');
+  var heightEl = document.getElementById('heightPx');
+  var maxKBEl = document.getElementById('maxKB');
+  var minHint = document.getElementById('minHint');
+  var sizeErr = document.getElementById('sizeErr');
+  var bgSelect = document.getElementById('bgSelect');
+  var resizeBtn = document.getElementById('resizeBtn');
+  var resetBtn = document.getElementById('resetBtn');
+  var formMsg = document.getElementById('formMsg');
+  var previewImg = document.getElementById('previewImg');
+  var previewPlaceholder = document.getElementById('previewPlaceholder');
+  var outSize = document.getElementById('outSize');
+  var outDims = document.getElementById('outDims');
+  var outFormat = document.getElementById('outFormat');
+  var resultMsg = document.getElementById('resultMsg');
+  var downloadBtn = document.getElementById('downloadBtn');
+
+  function presetById(id) {
+    for (var i = 0; i < R.PRESETS.length; i++) {
+      if (R.PRESETS[i].id === id) return R.PRESETS[i];
+    }
+    return null;
+  }
+
+  function fillPresets() {
+    presetSelect.innerHTML = '';
+    R.PRESETS.forEach(function (p) {
+      if (p.id !== 'custom' && p.kind !== kind) return;
+      var opt = document.createElement('option');
+      opt.value = p.id;
+      opt.textContent = p.name;
+      presetSelect.appendChild(opt);
+    });
+  }
+
+  function applyPreset(id) {
+    var p = presetById(id);
+    if (!p) return;
+    currentPreset = id;
+    presetSelect.value = id;
+    widthEl.value = p.w;
+    heightEl.value = p.h;
+    maxKBEl.value = p.maxKB;
+    minHint.textContent = p.minKB > 0
+      ? 'This form’s usual range is ' + p.minKB + '–' + p.maxKB + ' KB. The tool targets the maximum; if your result lands below the minimum, we will warn you.'
+      : '';
+    sizeErr.textContent = '';
+  }
+
+  function markCustom() {
+    if (currentPreset !== 'custom') {
+      currentPreset = 'custom';
+      presetSelect.value = 'custom';
+      minHint.textContent = '';
+    }
+  }
+
+  function setKind(k) {
+    kind = k;
+    kindPhoto.setAttribute('aria-pressed', k === 'photo' ? 'true' : 'false');
+    kindSign.setAttribute('aria-pressed', k === 'signature' ? 'true' : 'false');
+    fillPresets();
+    applyPreset(k === 'photo' ? 'passport' : 'ssc-sign');
+  }
+  kindPhoto.addEventListener('click', function () { setKind('photo'); });
+  kindSign.addEventListener('click', function () { setKind('signature'); });
+  presetSelect.addEventListener('change', function () { applyPreset(presetSelect.value); });
+  [widthEl, heightEl, maxKBEl].forEach(function (el) { el.addEventListener('input', markCustom); });
+
+  function clearResult() {
+    if (resultURL) { URL.revokeObjectURL(resultURL); resultURL = null; }
+    previewImg.hidden = true;
+    previewPlaceholder.hidden = false;
+    outSize.textContent = '—';
+    outDims.textContent = '—';
+    outFormat.textContent = '—';
+    resultMsg.textContent = '';
+    resultMsg.style.color = '';
+    downloadBtn.hidden = true;
+  }
+
+  function setFile(file) {
+    if (!file) return;
+    fileErr.textContent = '';
+    if (file.type && file.type.indexOf('image/') !== 0) {
+      fileErr.textContent = 'That file is not an image. Please choose a photo or signature image (JPG or PNG).';
+      return;
+    }
+    var url = URL.createObjectURL(file);
+    var img = new Image();
+    img.onload = function () {
+      if (srcURL) URL.revokeObjectURL(srcURL);
+      srcURL = url;
+      srcImg = img;
+      clearResult(); // a new picture must never sit beside the previous result
+      fileInfo.textContent = file.name + ' — ' + img.naturalWidth + ' × ' + img.naturalHeight +
+        ' px, ' + R.formatBytes(file.size);
+      formMsg.textContent = 'Image loaded. Check the size settings, then press “Resize image”.';
+    };
+    img.onerror = function () {
+      URL.revokeObjectURL(url);
+      fileErr.textContent = 'This image could not be opened. Some iPhone photos use a format (HEIC) that browsers cannot read — save or screenshot the photo as a JPG, then try again.';
+    };
+    img.src = url;
+  }
+  fileInput.addEventListener('change', function () { setFile(fileInput.files[0]); });
+  ['dragenter', 'dragover'].forEach(function (ev) {
+    dropZone.addEventListener(ev, function (e) { e.preventDefault(); dropZone.classList.add('drag'); });
+  });
+  ['dragleave', 'drop'].forEach(function (ev) {
+    dropZone.addEventListener(ev, function (e) { e.preventDefault(); dropZone.classList.remove('drag'); });
+  });
+  dropZone.addEventListener('drop', function (e) {
+    if (e.dataTransfer && e.dataTransfer.files.length) setFile(e.dataTransfer.files[0]);
+  });
+
+  function readSizeInputs() {
+    var w = parseInt(widthEl.value, 10);
+    var h = parseInt(heightEl.value, 10);
+    var kb = parseInt(maxKBEl.value, 10);
+    if (isNaN(w) || isNaN(h) || isNaN(kb) || w < 1 || h < 1 || kb < 1) {
+      sizeErr.textContent = 'Please enter the width, height and maximum KB as numbers (for example 413, 531, 50).';
+      return null;
+    }
+    if (w > 8000 || h > 8000) {
+      sizeErr.textContent = 'Those dimensions are larger than any form photo needs — please check the numbers in your form’s notice.';
+      return null;
+    }
+    if (kb > 5000) {
+      sizeErr.textContent = 'That KB limit is very large for a form photo — please check the number in your form’s notice.';
+      return null;
+    }
+    sizeErr.textContent = '';
+    return { w: w, h: h, kb: kb };
+  }
+
+  resizeBtn.addEventListener('click', function () {
+    if (!srcImg) {
+      fileErr.textContent = 'Please choose an image first.';
+      return;
+    }
+    var v = readSizeInputs();
+    if (!v) return;
+    clearResult(); // the old download must not survive into a new resize
+    resizeBtn.disabled = true;
+    formMsg.textContent = 'Resizing…';
+
+    var canvas = document.createElement('canvas');
+    canvas.width = v.w;
+    canvas.height = v.h;
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = bgSelect.value;
+    ctx.fillRect(0, 0, v.w, v.h);
+    ctx.imageSmoothingEnabled = true;
+    if ('imageSmoothingQuality' in ctx) ctx.imageSmoothingQuality = 'high';
+    var c = R.coverCrop(srcImg.naturalWidth, srcImg.naturalHeight, v.w, v.h);
+    ctx.drawImage(srcImg, c.sx, c.sy, c.sw, c.sh, 0, 0, v.w, v.h);
+
+    var target = v.kb * 1024;
+    var blobs = {};
+    R.findQuality(function (q, cb) {
+      canvas.toBlob(function (b) {
+        if (b) blobs[q] = b;
+        cb(b ? b.size : Infinity);
+      }, 'image/jpeg', q);
+    }, target, function (res) {
+      var blob = blobs[res.quality];
+      if (blob) { finish(blob); }
+      else {
+        canvas.toBlob(function (b2) { finish(b2); }, 'image/jpeg', res.quality);
+      }
+    });
+
+    function finish(b) {
+      resizeBtn.disabled = false;
+      if (!b) {
+        formMsg.textContent = 'The image could not be converted in this browser. Please try a JPG photo instead.';
+        return;
+      }
+      if (resultURL) URL.revokeObjectURL(resultURL);
+      resultURL = URL.createObjectURL(b);
+      previewImg.src = resultURL;
+      previewImg.hidden = false;
+      previewPlaceholder.hidden = true;
+      outSize.textContent = R.formatBytes(b.size);
+      outDims.textContent = v.w + ' × ' + v.h + ' px';
+      outFormat.textContent = 'JPG';
+      downloadBtn.href = resultURL;
+      downloadBtn.download = 'toolpitara-' + kind + '-' + v.w + 'x' + v.h + '.jpg';
+      downloadBtn.hidden = false;
+      var p = presetById(currentPreset);
+      var minKB = p ? p.minKB : 0;
+      if (b.size > target) {
+        resultMsg.style.color = 'var(--error)';
+        resultMsg.textContent = 'Even at the lowest quality, this image is ' + R.formatBytes(b.size) +
+          ' at ' + v.w + ' × ' + v.h + ' px — above your ' + v.kb + ' KB limit. Try a plainer, less detailed photo, or check whether your form allows a larger size.';
+      } else if (minKB > 0 && b.size < minKB * 1024) {
+        resultMsg.style.color = '';
+        resultMsg.textContent = 'Done — ' + R.formatBytes(b.size) + ', exactly ' + v.w + ' × ' + v.h +
+          ' px. One caution: that is below the ' + minKB + ' KB minimum in this preset’s usual range. Most forms accept a smaller file, but if yours is strict, use a larger or more detailed original photo.';
+      } else {
+        resultMsg.style.color = '';
+        resultMsg.textContent = 'Done — ' + R.formatBytes(b.size) + ', exactly ' + v.w + ' × ' + v.h +
+          ' px. Ready to download.';
+      }
+      formMsg.textContent = '';
+    }
+  });
+
+  resetBtn.addEventListener('click', function () {
+    fileInput.value = '';
+    srcImg = null;
+    fileInfo.textContent = '';
+    fileErr.textContent = '';
+    formMsg.textContent = '';
+    clearResult();
+    bgSelect.value = '#ffffff';
+    setKind('photo');
+  });
+
+  fillPresets();
+  applyPreset('passport');
+});
+</script>
+</body>
+</html>

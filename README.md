@@ -18,22 +18,24 @@ site/
 ├── terms.html                  Terms & Conditions
 ├── disclaimer.html             Disclaimer
 ├── robots.txt                  Allows all crawlers; points to the sitemap
-├── sitemap.xml                 Homepage + 3 tools + 5 trust pages
+├── sitemap.xml                 Homepage + 4 tools + 5 trust pages
 ├── README.md                   This file
 ├── assets/
 │   ├── style.css               Shared stylesheet (light + dark themes, CSS variables)
 │   ├── app.js                  Theme toggle (localStorage "tp-theme") + homepage search filter
 │   ├── emi.js                  EMI maths — pure functions, Node-testable
 │   ├── sip.js                  SIP maths — pure functions, Node-testable
-│   └── gst.js                  GST maths — pure functions, Node-testable
+│   ├── gst.js                  GST maths — pure functions, Node-testable
+│   └── resizer.js              Resizer core (crop fit, KB quality search) — pure, Node-testable
 └── tools/
     ├── emi-calculator.html     EMI Calculator (+ amortisation table, donut chart)
     ├── sip-calculator.html     SIP Calculator (+ year-wise growth chart)
-    └── gst-calculator.html     GST Calculator (add/remove, CGST/SGST/IGST split)
+    ├── gst-calculator.html     GST Calculator (add/remove, CGST/SGST/IGST split)
+    └── photo-signature-resizer.html  Photo & Signature Resizer (exact px + KB, exam presets)
 ```
 
 Tools planned but NOT yet built appear on the homepage as unlinked "Coming soon" cards
-(Photo & Signature Resizer, PDF Merger, CGPA Converter, QR Code Generator). No fake buttons.
+(PDF Merger, CGPA Converter, QR Code Generator). No fake buttons.
 
 ## Preview locally
 
@@ -48,7 +50,8 @@ also mostly works, but the local server is the faithful preview.)
 
 ## Test the calculator maths
 
-The maths in `assets/emi.js`, `assets/sip.js` and `assets/gst.js` is written as pure
+The maths in `assets/emi.js`, `assets/sip.js` and `assets/gst.js` — and the crop/quality
+logic in `assets/resizer.js` — is written as pure
 functions with a Node export, so it can be verified outside the browser, e.g.:
 
 ```bash
@@ -65,7 +68,7 @@ node -e "const E=require('./assets/emi.js'); console.log(E.amortisation(500000,9
 4. In the repository: **Settings → Pages** — set Source to "Deploy from a branch",
    branch `main`, folder `/ (root)`. Save.
 5. Wait a few minutes, then visit https://toolpitarawala.github.io/ and check every page,
-   the theme toggle, all three calculators and the sitemap at
+   the theme toggle, all three calculators, the photo & signature resizer and the sitemap at
    https://toolpitarawala.github.io/sitemap.xml .
 6. After it is live, submit the sitemap in Google Search Console.
 
