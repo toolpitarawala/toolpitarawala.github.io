@@ -1,0 +1,18 @@
+# ToolPitara
+
+> ToolPitara is a free box of simple online tools: EMI, SIP and GST calculators and a photo & signature resizer for exam forms. Every tool runs entirely in the visitor's browser — no sign-up, no uploads; your numbers and photos never leave your device. The site is made for students and everyday users in India who need quick, accurate everyday calculations.
+
+## Tools
+
+- [EMI Calculator](https://toolpitarawala.github.io/tools/emi-calculator.html): Calculate your loan EMI online, free.
+- [SIP Calculator](https://toolpitarawala.github.io/tools/sip-calculator.html): See how a monthly SIP investment could grow over time.
+- [GST Calculator](https://toolpitarawala.github.io/tools/gst-calculator.html): Add or remove GST, with the CGST/SGST/IGST split shown.
+- [Photo & Signature Resizer](https://toolpitarawala.github.io/tools/photo-signature-resizer.html): Resize a photo or signature to the exact KB size that exam and application forms ask for.
+
+## About and Policies
+
+- [About ToolPitara](https://toolpitarawala.github.io/about.html): What ToolPitara is and how the tools work.
+- [Contact](https://toolpitarawala.github.io/contact.html): How to reach ToolPitara.
+- [Privacy Policy](https://toolpitarawala.github.io/privacy.html): How ToolPitara handles your information.
+- [Terms of Use](https://toolpitarawala.github.io/terms.html): The terms for using ToolPitara.
+- [Disclaimer](https://toolpitarawala.github.io/disclaimer.html): Important limits on the calculators' results.
