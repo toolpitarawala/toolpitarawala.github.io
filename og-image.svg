@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b6e4f"/>
+      <stop offset="1" stop-color="#063f2d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g transform="translate(96,84) scale(2.1)">
+    <path d="M16 .6l1.9 4.9 4.9 1.9-4.9 1.9L16 14.2l-1.9-4.9L9.2 7.4l4.9-1.9z" fill="#e08a00" transform="translate(4,0) scale(1.35)"/>
+    <rect x="3" y="26" width="40" height="7" rx="3.5" fill="#ffffff"/>
+    <rect x="6" y="36" width="34" height="16" rx="4" fill="#ffffff" opacity=".88"/>
+    <circle cx="23" cy="44" r="3" fill="#0b6e4f"/>
+  </g>
+  <text x="248" y="212" font-family="Arial, Helvetica, sans-serif" font-size="112" font-weight="bold" fill="#ffffff">ToolPitara</text>
+  <text x="120" y="368" font-family="Arial, Helvetica, sans-serif" font-size="45" fill="#d6f0e6">Free Online Tools for Everyday Calculations</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="bold" fill="#ffffff">
+    <rect x="120" y="404" width="316" height="60" rx="30" fill="none" stroke="#ffffff" stroke-opacity=".85" stroke-width="3"/>
+    <text x="144" y="445">EMI Calculator</text>
+    <rect x="456" y="404" width="316" height="60" rx="30" fill="none" stroke="#ffffff" stroke-opacity=".85" stroke-width="3"/>
+    <text x="480" y="445">SIP Calculator</text>
+    <rect x="792" y="404" width="316" height="60" rx="30" fill="none" stroke="#ffffff" stroke-opacity=".85" stroke-width="3"/>
+    <text x="816" y="445">GST Calculator</text>
+    <rect x="120" y="482" width="520" height="60" rx="30" fill="none" stroke="#ffffff" stroke-opacity=".85" stroke-width="3"/>
+    <text x="144" y="523">Photo &amp; Signature Resizer</text>
+  </g>
+  <text x="120" y="592" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#a8d8c6">No sign-up &#183; Nothing uploaded &#183; Runs in your browser</text>
+</svg>
